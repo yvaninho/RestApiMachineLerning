@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Header -->
+<header>
+  <div class="container" id="maincontent" tabindex="-1">
+  
+
+              
+     
+              
+             
+                  {% 
+                  
+                  print(data) %}
+                  
+
+  
+ 
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+          <a class="btn btn-lg btn-outline big-button facebook_button" id="FbShare">
+             Propager la définition des données 
+             
+          </a>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{{ your_app_id }}',
+      cookie     : true,  // enable cookies to allow the server to access
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.8' // use graph api version 2.8
+    });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.9&appId={{ your_app_id }}";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  $('#FbShare').click(function(){
+    FB.ui({
+      method: 'share',
+      href: window.location.href,
+    }, function(response){});
+  });
+</script>
+{% endblock %}
